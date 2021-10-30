@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'midterm/style.css' %}">
+</head>
+<body>
+<h2>{{question.question_text}}</h2>
+<ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'midterm:detail' question.id %}">Vote Again?</a>
+&nbsp;or&nbsp;&nbsp;<a href="{% url 'midterm:index' %}">Back to First</a>
+</body>
+</html>

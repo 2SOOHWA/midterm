@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'midterm/style.css' %}">
+</head>
+<body>
+<h2>{{question.question_text}}</h2>
+{% if error_message %}<p><strong>{{error_message}}</strong></p>{% endif %}
+
+<form action="{% url 'midterm:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
+        <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br>
+    {% endfor %}
+    <br>
+    <input type="submit" value="vote">
+    &nbsp;or&nbsp;&nbsp;<a href="{% url 'midterm:index' %}">Back to First</a>
+</form>
+</body>
+</html>

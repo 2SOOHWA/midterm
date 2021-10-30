@@ -1,0 +1,20 @@
+* {
+    color : white;
+}
+
+a {
+    text-decoration : none;
+}
+
+a:hover {
+    color : yellow;
+}
+
+body {
+    background : black url("images/game.png") no-repeat;
+    background-position : right;
+}
+
+input {
+    color : black;
+}
